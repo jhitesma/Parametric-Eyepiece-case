@@ -11,6 +11,10 @@ eyepiece_ext_length = 10;
 /* [Case Parameters] */
 // Wall thickness of case in mm
 case_thickness = 2;
+// Scale factor for gap between lens and case
+pad = 1.05;
+// Scale factor for gap between top and bottom of case
+tpad = 1.01;
 
 /* [Print Parameters] */
 part = "bot_only"; // [case:Case Only, all:Case and fake eyepiece, eyepiece:Eyepiece Only, top_only:Case Top Only, bot_only:Case Bottom Only]
@@ -22,11 +26,6 @@ bot_r = (eyepiece_ext_od/2) + case_thickness;
 top_length = eyepiece_shaft_length + 2 + eyepiece_ext_length + (case_thickness*2);
 top_r = bot_r + case_thickness;
 
-// Padding for gap between lens and case
-pad = 1.05;
-
-// Tight Padding between top and bottom of case
-tpad = 1.01;
 
 $fs = 0.1;
 $fa = 6;
