@@ -13,7 +13,7 @@ eyepiece_ext_length = 10;
 case_thickness = 2;
 
 /* [Print Parameters] */
-part = "case"; // [case:Case Only, all:Case and fake eyepiece, eyepiece:Eyepiece Only,top_only:Case Top Only,bot_only:Case Bottom Only]
+part = "bot_only"; // [case:Case Only, all:Case and fake eyepiece, eyepiece:Eyepiece Only, top_only:Case Top Only, bot_only:Case Bottom Only]
 
 /* [Hidden] */
 bot_length = eyepiece_shaft_length + 2 + case_thickness*2;
@@ -22,7 +22,11 @@ bot_r = (eyepiece_ext_od/2) + case_thickness;
 top_length = eyepiece_shaft_length + 2 + eyepiece_ext_length + (case_thickness*2);
 top_r = bot_r + case_thickness;
 
+// Padding for gap between lens and case
 pad = 1.05;
+
+// Tight Padding between top and bottom of case
+tpad = 1.01;
 
 $fs = 0.1;
 $fa = 6;
@@ -66,7 +70,7 @@ module case_top() {
             cylinder(top_length/2, top_r, top_r, true);
         }
         scale([pad,pad,1]) eyepiece();
-        case_bottom();
+        scale([tpad,tpad,1]) case_bottom();
     }
 }
 
@@ -75,7 +79,7 @@ module case_bottom() {
     difference() {
         translate([0,0,bot_length/2])
         cylinder(bot_length, bot_r, bot_r, true);
-        scale(pad,pad,1]) eyepiece();
+        scale([pad,pad,1]) eyepiece();
     }
 };
 
